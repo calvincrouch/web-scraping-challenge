@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+
+   
+    <div class="row" id="news-headine">
+      <div class="col-md-12">
+        <h2 class="heading">Latest Mars News</h2>
+          <h4 class="heading">{{listings.article_title}}</h4>
+          <small>{{listings.paragraph}}</small>
+      </div>
+    </div>
+    <div class="row" id="featured-headine">
+      <div class="col-md-7">
+        <h2 class="heading">Featured Mars Image</h2>
+        <img src="{{listings.featured_image_url}}" alt="featured-mars-image" class="img-thumbnail">
+      </div>
+      <div class="col-md-5">
+        <h3 class="heading">Mars Facts</h3>
+        <table>{{listings.html_table | safe}}</table> 
+      </div>
+    </div>
+    <div class="row" id="hemispheres-headline">
+      <div class="col-md-12">
+        <h2 class="text-center">Mars Hemispheres</h2>
+      </div>
+    </div>  
+    <hr>
+    
+    <div class="row" id="hemispheres">
+      {% for hemisphere in listings.hemisphere_image_urls %}
+      <div class="col-md-3">
+        <div class="card" style="width: 18rem;">
+          <img class="img-thumbnail" src="{{hemisphere.img_url}}" alt="Card image cap">
+          <div class="card-body">
+            <p class="card-text">{{hemisphere.title}}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %} 
+    </div>
+    
+  </div>
+</body>
+
+</html>
